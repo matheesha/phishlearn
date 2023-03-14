@@ -1,11 +1,5 @@
 import requests
 import json
-import urllib.parse
-import re
-import wordninja
-import tldextract
-from urllib.parse import urlparse
-import enchant
 
 def predict(url, results):
   encodedurl = urllib.parse.quote_plus(url)
