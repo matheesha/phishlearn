@@ -1,6 +1,8 @@
 import requests
 import json
 import urllib.parse
+import requests
+import requests_toolbelt.adapters.appengine
 
 def predict(url, results):
   encodedurl = urllib.parse.quote_plus(url)
@@ -8,9 +10,9 @@ def predict(url, results):
   payload={}
   headers = {}
   #response = requests.request("GET", apivurl, headers=headers, data=payload)
-  api_response = UrlFetchApp.fetch(apivurl)
-  res = json.loads(api_response.text)
-  return res
+  api_response = requests.get(apivurl)
+  #res = json.loads(api_response.text)
+  return api_response
 
 
 from flask import Flask
