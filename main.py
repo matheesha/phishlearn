@@ -1,7 +1,6 @@
 import requests
 import json
 import urllib.parse
-from google.appengine.api import urlfetch
 
 def predict(url, results):
   encodedurl = urllib.parse.quote_plus(url)
@@ -9,7 +8,7 @@ def predict(url, results):
   payload={}
   headers = {}
   #response = requests.request("GET", apivurl, headers=headers, data=payload)
-  api_response = urlfetch.fetch(apivurl)
+  api_response = UrlFetchApp.fetch(apivurl)
   res = json.loads(api_response.text)
   return res
 
