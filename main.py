@@ -12,7 +12,7 @@ def predict(url, results):
   #response = requests.request("GET", apivurl, headers=headers, data=payload)
   api_response = requests.get(apivurl)
   #res = json.loads(api_response.text)
-  return api_response
+  return api_response.text
 
 
 from flask import Flask
