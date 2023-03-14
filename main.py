@@ -11,8 +11,18 @@ def predict(url, results):
   headers = {}
   #response = requests.request("GET", apivurl, headers=headers, data=payload)
   api_response = requests.get(apivurl)
-  #res = json.loads(api_response.text)
-  return api_response.text
+  res = json.loads(api_response.text)
+  detection_count = res['data']['report']['domain_blacklist']['detections']
+  results['detection_count'] = detection_count
+  risk_score = res['data']['report']['risk_score']['result']
+  results['risk_score'] = risk_score
+  results['is_shortner'] = res['data']['report']['site_category']['is_url_shortener']
+
+  if(detection_count > 0 or risk_score > 30): 
+    results['is_phishing'] = True
+  else:
+     results['is_phishing'] = False
+  return results
 
 
 from flask import Flask
