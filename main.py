@@ -1,5 +1,6 @@
 import requests
 import json
+import urllib.parse
 
 def predict(url, results):
   encodedurl = urllib.parse.quote_plus(url)
