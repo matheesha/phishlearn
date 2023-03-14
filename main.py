@@ -22,30 +22,6 @@ def predict(url, results):
   return results
 
 
-
-def GetFeatures(url):
-  extResult = tldextract.extract((url))
-  splits = urlparse(url)
-  domain = extResult.domain
-  scheme=  splits.scheme
-  hostname = splits.hostname
-  registered_domain = extResult.registered_domain
-  subdomain = extResult.subdomain
-  path = splits.path
-  port = splits.port
-  query = splits.query
-
-  features = dict()
-  ##features["IP Address in URL Domain"] = having_ip_address(hostname)
-  #features["Suspicious special characters in Domain"] = get_delimeters_nondot_count(hostname)
-  ## is it correct to use only the hostname
-  #features["Shortening service has been used"] = get_shortening_service(hostname)
-  #features["Heavy use of special characters"] = get_special_char_count(hostname)
-  ## features["(-) Prefix/Suffix in domain"] = get_prefix_suffix_in_domain(hostname)
-  #features["Suspicious continuous words in domain"] = get_scriptio_continua_calculations(hostname)
-  #features["Random words in domain"] = have_random_words(url)
-  return features
-
 from flask import Flask
 from flask import request
 
@@ -60,7 +36,6 @@ def phishlex_api():
     url = request.args.get("url", "")
     results = dict()
     results = predict(url, results)
-    #results['features'] = dict() #GetFeatures(url)
     return results
 
 if __name__ == "__main__":
