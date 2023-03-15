@@ -5,3 +5,5 @@ requests==2.27.0
 requests-toolbelt==0.10.1
 json5==0.9.5
 urllib3==1.26.14
+wordninja==2.0.0
+pyenchant==3.2.1
